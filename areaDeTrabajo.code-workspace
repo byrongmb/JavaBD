@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.project.referencedLibraries": {
+			"include": [
+				"lib/**/*.jar"
+			],
+			"exclude": [
+				"lib/mssql-jdbc-8.4.1.jre14.jar"
+			]
+		}
+	}
+}
