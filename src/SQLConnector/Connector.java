@@ -43,6 +43,6 @@ public class Connector {
     public Connector(final String username, final String password) {
         setUsername(username);
         setPassword(password);
-        this.URL = "jdbc:sqlserver://DESKTOP-9L6HT12;databaseName=Personas";
+        this.URL = "jdbc:sqlserver://localhost;databaseName=Personas";
     }
 }

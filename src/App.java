@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import SQLConnector.Connector;
-
+/*username: admin, password: p@ss1234*/
 public class App {
     private static Scanner teclado = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
