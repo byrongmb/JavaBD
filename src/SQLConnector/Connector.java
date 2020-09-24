@@ -1,14 +1,10 @@
 package SQLConnector;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Connector {
     private final String URL;
     private String username;
     private String password;
-
     private Connection con = null;
 
     public void isConneted() throws ClassNotFoundException, SQLException {
