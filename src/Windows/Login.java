@@ -1,16 +1,11 @@
 package Windows;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 import java.awt.event.*;
+import java.sql.SQLException;
+import javax.swing.*;
+import SQLConnector.Connector;
 
 public class Login extends JFrame {
-    private JPanel[] panel = new JPanel[2];
-    private JLabel[] label = new JLabel[3];
-    private JTextField[] textfield = new JTextField[2];
-    private Button[] button = new Button[2];
-
     public Login() {
         this.setSize(400, 300);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -26,7 +21,34 @@ public class Login extends JFrame {
         buttons();
     }
 
-    /* Components */
+    /* Metodos*/
+    private String[] getData(){
+        String[] data = new String[textfield.length];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = textfield[i].getText();
+        }
+        return data;
+    }
+
+    private boolean validateData(){
+        boolean valid = false;
+        try {
+            conector.isConneted();
+            JOptionPane.showMessageDialog(null, "Bienvenido \n" +conector.getUsername());
+            this.setVisible(false);
+            valid = true;
+		} catch (ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error: Probelmas al cargar Driver\n");
+            System.out.println(e.getMessage());
+            System.exit(0);
+		} catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: Usuario y Contrasena Invalidos\n");
+            System.out.println(e.getMessage());
+        }
+        return valid;
+    }
+
+    /* Componentes */
     private void panels() {
         for (int i = 0; i < panel.length; i++) {
             panel[i] = new JPanel();
@@ -96,12 +118,22 @@ public class Login extends JFrame {
         ActionListener pressLogin = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Form form = new Form();
-                form.setVisible(true); 
+                String[] data = getData();
+                conector.setCredentials(data[0], data[1]);
+                if(validateData()){
+                    form.setVisible(true);
+                }
             }
         };
         button[1].addActionListener(pressLogin);
     }
 
+    private JPanel[] panel = new JPanel[2];
+    private JLabel[] label = new JLabel[3];
+    private JTextField[] textfield = new JTextField[2];
+    private Button[] button = new Button[2];
+
+    private Form form = new Form();
+    private Connector conector = new Connector();
     private static final long serialVersionUID = 1L;
 }

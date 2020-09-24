@@ -1,4 +1,5 @@
 package SQLConnector;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,22 +9,27 @@ public class Connector {
     private String username;
     private String password;
 
-    public boolean isConneted() {
-        boolean band = false;
-        Connection con = null;
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = (Connection) DriverManager.getConnection(URL, username, password);
-            band = true;
-        } catch (final ClassNotFoundException e) {
-            System.out.println("Error!! ClassNotFoundException: " + e.getMessage());
-        } catch (final SQLException e) {
-            System.out.println("Error!! SQLException: " + e.getMessage());
-        }
-        return band;
+    private Connection con = null;
+
+    public void isConneted() throws ClassNotFoundException, SQLException {
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        setCon((Connection) DriverManager.getConnection(URL, username, password));
     }
 
     /* Getters and Setters */
+    public Connection getCon() {
+        return con;
+    }
+
+    public void setCon(Connection con) {
+        this.con = con;
+    }
+
+    public void setCredentials(final String username, final String password) {
+        setUsername(username);
+        setPassword(password);
+    }
+
     public String getUsername() {
         return username;
     }
@@ -32,17 +38,18 @@ public class Connector {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(final String password) {
         this.password = password;
     }
 
+    /*Constructors*/
     public Connector(final String username, final String password) {
         setUsername(username);
         setPassword(password);
+        this.URL = "jdbc:sqlserver://localhost;databaseName=Personas";
+    }
+
+    public Connector() {
         this.URL = "jdbc:sqlserver://localhost;databaseName=Personas";
     }
 }
