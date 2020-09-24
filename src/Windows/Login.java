@@ -19,15 +19,14 @@ public class Login extends JFrame {
     }
 
     private void components() {
-        initializePanel();
+        panels();
         labels();
         textfields();
         buttons();
     }
 
     /*Components*/
-    private void initializePanel(){
-        
+    private void panels(){
         for (int i = 0; i < panel.length; i++) {
             panel[i] = new JPanel();
             this.panel[i].setLayout(null);
@@ -37,6 +36,7 @@ public class Login extends JFrame {
         this.getContentPane().add(panel[0]);
         this.panel[0].add(panel[1]);
 
+        /*Personalizando Panel 2*/
         this.panel[1].setBackground(new java.awt.Color(245,241,241));
         this.panel[1].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         this.panel[1].setBounds(30, 55, 320, 130);
