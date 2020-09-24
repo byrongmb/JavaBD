@@ -3,12 +3,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.event.*;
 
 public class Form extends JFrame{
-    private JPanel[] panel = new JPanel[2];
-    private JLabel[] label = new JLabel[6];
-    private JTextField[] textField = new JTextField[4];
-    private Button[] button = new Button[4];
+    
 
     public Form(){
         this.setSize(600, 500);
@@ -18,14 +16,44 @@ public class Form extends JFrame{
         components();
     }
 
+    /*Inicializa los Componentes*/
     private void components(){
         panels();
         labels();
         textfields();
         buttons();
+        blockForm();
+        disableAllButtonsSaveAndCancel();
     }
 
-     /*Components*/
+    /*Programacion de Botones*/
+    private void unlockForm(){
+        for (int i = 0; i < textField.length; i++) {
+            textField[i].setText("");
+            textField[i].setEditable(true);
+        }
+    }
+
+    private void blockForm(){
+        for (int i = 0; i < textField.length; i++) {
+            textField[i].setText("");
+            textField[i].setEditable(false);
+        }
+    }
+
+    private void disableAllButtonsSaveAndCancel(){
+        button[1].setEnabled(false);
+        button[2].setEnabled(false);
+        button[0].setEnabled(true);
+    }
+
+    private void disableAllButtonNew(){
+        button[0].setEnabled(false);
+        button[1].setEnabled(true);
+        button[2].setEnabled(true);
+    }
+
+     /*Componentes*/
     private void panels(){
         for (int i = 0; i < panel.length; i++) {
             panel[i] = new JPanel();
@@ -108,7 +136,37 @@ public class Form extends JFrame{
         button[3].setTitle("Salir");
         button[3].setColor(4);
         button[3].setLocation(480, 300);
+
+        ActionListener pressNew = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                disableAllButtonNew();
+                unlockForm();
+            }
+        };
+        button[0].addActionListener(pressNew);
+        
+        ActionListener pressCancel = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                disableAllButtonsSaveAndCancel();
+                blockForm();
+            }
+        };
+        button[2].addActionListener(pressCancel);
+
+        ActionListener pressExit = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        };
+        button[3].addActionListener(pressExit);
     }
 
+    private JPanel[] panel = new JPanel[2];
+    private JLabel[] label = new JLabel[6];
+    private JTextField[] textField = new JTextField[4];
+    private Button[] button = new Button[4];
     private static final long serialVersionUID = 8270121826700971578L;    
 }
