@@ -3,26 +3,26 @@ import java.awt.Color;
 
 import javax.swing.JButton;
 
-public class Buttons extends JButton {
+public class Button extends JButton {
     private int color;
 
-    public Buttons(String title, int color) {
+    public Button(String title, int color) {
         this.setText(title);
         this.color = color;
         this.setSize(80, 30);
         colorSelector();
     }
 
-    public Buttons(String title) {
+    public Button(String title) {
         this.setText(title);
         setColor(1);
         this.setSize(80, 30);
         colorSelector();
     }
 
-    public Buttons() {
+    public Button() {
         setColor(2);
-        this.setSize(80, 30);
+        this.setSize(85, 30);
         colorSelector();
     }
 
@@ -66,6 +66,7 @@ public class Buttons extends JButton {
 
     public void setColor(int color) {
         this.color = color;
+        colorSelector();
     }
 
     private static final long serialVersionUID = 1L;

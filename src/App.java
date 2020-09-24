@@ -1,9 +1,9 @@
-import Windows.Login;
+import Windows.*;
 /*username: admin, password: p@ss1234*/
 public class App {
     public static void main(String[] args) throws Exception {
         
-        Login nuevoInicio = new Login();
+        Form nuevoInicio = new Form();
         nuevoInicio.setVisible(true);
     }
 }

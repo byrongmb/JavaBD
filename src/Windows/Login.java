@@ -8,7 +8,7 @@ public class Login extends JFrame {
     private JPanel[] panel = new JPanel[2];
     private JLabel[] label = new JLabel[3];
     private JTextField[] textfield = new JTextField[2];
-    private Buttons[] button = new Buttons[2];
+    private Button[] button = new Button[2];
 
     public Login() {
         this.setSize(400, 300);
@@ -72,7 +72,7 @@ public class Login extends JFrame {
 
     private void buttons(){
         for (int i = 0; i < button.length; i++) {
-            button[i] = new Buttons();
+            button[i] = new Button();
             panel[0].add(button[i]);            
         }
         
@@ -80,7 +80,7 @@ public class Login extends JFrame {
         button[0].setLocation(180, 200);
 
         button[1].setTitle("login");
-        button[1].setLocation(300, 200);
+        button[1].setLocation(290, 200);
     }
 
     private static final long serialVersionUID = 1L;
