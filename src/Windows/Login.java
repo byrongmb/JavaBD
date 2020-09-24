@@ -122,6 +122,8 @@ public class Login extends JFrame {
                 conector.setCredentials(data[0], data[1]);
                 if(validateData()){
                     form.setVisible(true);
+                    form.setUsername(data[0]);
+                    form.setUsername(data[1]);
                 }
             }
         };

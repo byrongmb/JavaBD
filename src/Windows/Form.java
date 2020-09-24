@@ -6,8 +6,6 @@ import javax.swing.JTextField;
 import java.awt.event.*;
 
 public class Form extends JFrame{
-    
-
     public Form(){
         this.setSize(600, 500);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -27,6 +25,14 @@ public class Form extends JFrame{
     }
 
     /*Programacion de Botones*/
+    private String[] getData(){
+        String[] data = new String[textField.length];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = textField[i].getText();            
+        }
+        return data;
+    }
+    
     private void unlockForm(){
         for (int i = 0; i < textField.length; i++) {
             textField[i].setText("");
@@ -53,7 +59,7 @@ public class Form extends JFrame{
         button[2].setEnabled(true);
     }
 
-     /*Componentes*/
+     /*Personizalizacion de los Componentes*/
     private void panels(){
         for (int i = 0; i < panel.length; i++) {
             panel[i] = new JPanel();
@@ -164,9 +170,22 @@ public class Form extends JFrame{
         button[3].addActionListener(pressExit);
     }
 
+    /*Datos de la Sesion*/
+    private String username;
+    private String password;
+
+    /*Componentes*/
     private JPanel[] panel = new JPanel[2];
     private JLabel[] label = new JLabel[6];
     private JTextField[] textField = new JTextField[4];
     private Button[] button = new Button[4];
-    private static final long serialVersionUID = 8270121826700971578L;    
+    private static final long serialVersionUID = 8270121826700971578L;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

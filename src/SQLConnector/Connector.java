@@ -12,6 +12,10 @@ public class Connector {
         setCon((Connection) DriverManager.getConnection(URL, username, password));
     }
 
+    public boolean saveData(String nombre, String apellido, int edad, String telefono){
+        return false;
+    }
+
     /* Getters and Setters */
     public Connection getCon() {
         return con;
