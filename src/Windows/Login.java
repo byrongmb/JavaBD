@@ -45,11 +45,13 @@ public class Login extends JFrame {
     private void labels(){
         for (int i = 0; i < label.length; i++) {
             label[i] = new JLabel();
+            label[i].setFont(new java.awt.Font("Yu Gothic UI", 0, 18));
         }
 
         panel[0].add(label[0]);
         label[0].setText("Iniciar Sesión");
-        label[0].setBounds(150, 10, 200, 50);
+        label[0].setFont(new java.awt.Font("Yu Gothic UI", 1, 22));
+        label[0].setBounds(135, 10, 200, 50);
 
         panel[1].add(label[1]);
         label[1].setText("Username:");
@@ -66,8 +68,8 @@ public class Login extends JFrame {
             panel[1].add(textfield[i]);            
         }
 
-        textfield[0].setBounds(75, 25, 200, 20);
-        textfield[1].setBounds(75, 55, 200, 20);
+        textfield[0].setBounds(98, 27, 150, 20);
+        textfield[1].setBounds(98, 57, 150, 20);
     }
 
     private void buttons(){

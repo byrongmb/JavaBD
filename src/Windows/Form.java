@@ -50,7 +50,7 @@ public class Form extends JFrame{
 
         label[0].setText("Ingreso de Datos");
         label[0].setBounds(150, 10, 200, 50);
-        label[0].setFont(new java.awt.Font("Yu Gothic UI", 0, 22));
+        label[0].setFont(new java.awt.Font("Yu Gothic UI", 1, 22));
         panel[0].add(label[0]);
 
         label[1].setText("Nombre: ");
