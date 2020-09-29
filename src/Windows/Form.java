@@ -1,12 +1,16 @@
 package Windows;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import SQLConnector.Connector;
 import java.awt.event.*;
+import java.sql.SQLException;
 
-public class Form extends JFrame{
-    public Form(){
+public class Form extends JFrame {
+    public Form() {
         this.setSize(600, 500);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -14,8 +18,8 @@ public class Form extends JFrame{
         components();
     }
 
-    /*Inicializa los Componentes*/
-    private void components(){
+    /* Inicializa los Componentes */
+    private void components() {
         panels();
         labels();
         textfields();
@@ -24,13 +28,27 @@ public class Form extends JFrame{
         disableAllButtonsSaveAndCancel();
     }
 
-    /*Programacion de Botones*/
-    private String[] getData(){
+    /* Programacion de Botones */
+    private String[] getData() {
         String[] data = new String[textField.length];
         for (int i = 0; i < data.length; i++) {
-            data[i] = textField[i].getText();            
+            data[i] = textField[i].getText();
         }
         return data;
+    }
+
+    private void saveData() {
+        Connector conector = new Connector(username, password);
+        try {
+            conector.isConneted();
+            conector.saveData(getData());
+            JOptionPane.showMessageDialog(null, "Datos Guardados Correctamente");
+            disableAllButtonsSaveAndCancel();
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: al cargar la BD\n");
+            System.out.println(e.getMessage());
+        }
+        
     }
     
     private void unlockForm(){
@@ -51,6 +69,7 @@ public class Form extends JFrame{
         button[1].setEnabled(false);
         button[2].setEnabled(false);
         button[0].setEnabled(true);
+        blockForm();
     }
 
     private void disableAllButtonNew(){
@@ -168,6 +187,14 @@ public class Form extends JFrame{
             }
         };
         button[3].addActionListener(pressExit);
+
+        ActionListener pessSave =  new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveData();
+            }
+        };
+        button[1].addActionListener(pessSave);
     }
 
     /*Datos de la Sesion*/

@@ -12,8 +12,16 @@ public class Connector {
         setCon((Connection) DriverManager.getConnection(URL, username, password));
     }
 
-    public boolean saveData(String nombre, String apellido, int edad, String telefono){
-        return false;
+    public int saveData(String[] data) throws SQLException {
+        int band = 0;
+        String query = "insert into datos(Nombre, Apellido, Edad, Telefono) values(?,?,?,?)";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, data[0]);
+        ps.setString(2, data[1]);
+        ps.setString(3, data[2]);
+        ps.setString(4, data[3]);
+        band = ps.executeUpdate();
+        return band;
     }
 
     /* Getters and Setters */

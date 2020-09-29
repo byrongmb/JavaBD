@@ -123,7 +123,7 @@ public class Login extends JFrame {
                 if(validateData()){
                     form.setVisible(true);
                     form.setUsername(data[0]);
-                    form.setUsername(data[1]);
+                    form.setPassword(data[1]);
                 }
             }
         };
