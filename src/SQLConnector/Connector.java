@@ -13,13 +13,13 @@ public class Connector {
     private DataSource ds = null;
     private Context ctx = null;
 
-    public boolean isConneted(String username, String password) {
+    public boolean isConneted() {
         
         boolean band = false;
         try {
             ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:/MSSQLDS");
-            con = ds.getConnection(username, password);
+            con = ds.getConnection();
             con.commit();
             band = true;
         } catch (NamingException e) {
