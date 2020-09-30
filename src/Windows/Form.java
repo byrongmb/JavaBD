@@ -1,23 +1,11 @@
 package Windows;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import SQLConnector.Connector;
+import javax.swing.*;
+import SQLConnector.*;
 import java.awt.event.*;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Form extends JFrame {
-    public Form() {
-        this.setSize(600, 500);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        components();
-    }
-
     /* Inicializa los Componentes */
     private void components() {
         panels();
@@ -218,5 +206,13 @@ public class Form extends JFrame {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Form() {
+        this.setSize(600, 500);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        components();
     }
 }
