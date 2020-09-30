@@ -1,48 +1,30 @@
 package SQLConnector;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class Connector {
-    private final String URL;
-    private String username;
-    private String password;
+    private InitialContext ctx;
+    private DataSource ds;
+    private Connection con;
 
     public boolean isConneted() {
         boolean band = false;
-        Connection con = null;
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = (Connection) DriverManager.getConnection(URL, username, password);
+            ctx = new InitialContext();
+            ds = (DataSource) ctx.lookup("java:/MSSQLDS");
+            con = ds.getConnection();
             band = true;
-        } catch (final ClassNotFoundException e) {
-            System.out.println("Error!! ClassNotFoundException: " + e.getMessage());
-        } catch (final SQLException e) {
-            System.out.println("Error!! SQLException: " + e.getMessage());
+        } catch (NamingException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return band;
     }
 
-    /* Getters and Setters */
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(final String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(final String password) {
-        this.password = password;
-    }
-
-    public Connector(final String username, final String password) {
-        setUsername(username);
-        setPassword(password);
-        this.URL = "jdbc:sqlserver://localhost;databaseName=Personas";
-    }
 }
