@@ -10,6 +10,7 @@
  * @since 20-09-2020
  */
 package SQLConnector;
+import java.net.URL;
 import java.sql.*;
 
 public class Connector {
@@ -30,6 +31,8 @@ public class Connector {
     * @see SQLException
     */
     public void isConneted() throws ClassNotFoundException, SQLException {
+        System.out.println(username + password);
+        System.out.println(URL);
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         setCon((Connection) DriverManager.getConnection(URL, username, password));
     }
@@ -120,9 +123,9 @@ public class Connector {
     }
 
     public Connector() {
-        this.URL = "jdbc:sqlserver://localhost;databaseName=" + database;
         setDatabase("Personas");
         setTable("datos");
+        this.URL = "jdbc:sqlserver://localhost;databaseName=" + database;
     }
 
     public Connector(String username, String password, String table, String database) {
