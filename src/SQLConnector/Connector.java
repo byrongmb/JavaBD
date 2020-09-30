@@ -16,7 +16,7 @@ public class Connector {
         
         boolean band = false;
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:/MSSQLDS");
             con = ds.getConnection();
@@ -24,8 +24,6 @@ public class Connector {
         } catch (NamingException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return band;

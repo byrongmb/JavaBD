@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import SQLConnector.Connector;
 /*username: admin, password: p@ss1234*/
 public class App {
