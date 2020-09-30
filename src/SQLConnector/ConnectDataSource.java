@@ -3,7 +3,6 @@ package SQLConnector;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
 public class ConnectDataSource {
