@@ -153,6 +153,7 @@ public class Form extends JFrame {
         button[4].setTitle("Mostrar");
         button[4].setColor(2);
         button[4].setLocation(480, 350);
+        button[4].setEnabled(false);
 
         ActionListener pressNew = new ActionListener(){
             @Override
