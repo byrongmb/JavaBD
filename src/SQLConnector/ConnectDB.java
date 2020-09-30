@@ -18,9 +18,6 @@ public class ConnectDB {
 
     public ConnectDB() {
         try {
-            Properties props = new Properties();
-            props.setProperty(Context.INITIAL_CONTEXT_FACTORY,"org.apache.activemq.jndi.ActiveMQInitialContextFactory");
-            props.setProperty(Context.PROVIDER_URL,"tcp://localhost:61616");
             ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:/MSSQLDS");
             con = ds.getConnection();
