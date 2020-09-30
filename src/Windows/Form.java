@@ -162,6 +162,10 @@ public class Form extends JFrame {
         button[3].setColor(4);
         button[3].setLocation(480, 300);
 
+        button[4].setTitle("Mostrar");
+        button[4].setColor(2);
+        button[4].setLocation(480, 350);
+
         ActionListener pressNew = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -205,7 +209,7 @@ public class Form extends JFrame {
     private JPanel[] panel = new JPanel[2];
     private JLabel[] label = new JLabel[6];
     private JTextField[] textField = new JTextField[4];
-    private Button[] button = new Button[4];
+    private Button[] button = new Button[5];
     private static final long serialVersionUID = 8270121826700971578L;
 
     public void setUsername(String username) {

@@ -5,6 +5,9 @@ public class Connector {
     private final String URL;
     private String username;
     private String password;
+    private String table;
+    private String database;
+
     private Connection con = null;
 
     public void isConneted() throws ClassNotFoundException, SQLException {
@@ -14,7 +17,7 @@ public class Connector {
 
     public int saveData(String[] data) throws SQLException {
         int band = 0;
-        String query = "insert into datos(Nombre, Apellido, Edad, Telefono) values(?,?,?,?)";
+        String query = "insert into "+ table +"(Nombre, Apellido, Edad, Telefono) values(?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, data[0]);
         ps.setString(2, data[1]);
@@ -24,6 +27,17 @@ public class Connector {
         return band;
     }
 
+    public ResultSet getData() throws SQLException {
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM datos");
+        return rs;
+    }
+
+    public void setCredentials(final String username, final String password) {
+        setUsername(username);
+        setPassword(password);
+    }
+
     /* Getters and Setters */
     public Connection getCon() {
         return con;
@@ -31,11 +45,6 @@ public class Connector {
 
     public void setCon(Connection con) {
         this.con = con;
-    }
-
-    public void setCredentials(final String username, final String password) {
-        setUsername(username);
-        setPassword(password);
     }
 
     public String getUsername() {
@@ -50,14 +59,42 @@ public class Connector {
         this.password = password;
     }
 
+    public String getTable() {
+        return table;
+    }
+
+    public void setTable(String table) {
+        this.table = table;
+    }
+
+    public String getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(String database) {
+        this.database = database;
+    }
+
     /*Constructors*/
     public Connector(final String username, final String password) {
         setUsername(username);
         setPassword(password);
-        this.URL = "jdbc:sqlserver://localhost;databaseName=Personas";
+        setDatabase("Personas");
+        setTable("datos");
+        this.URL = "jdbc:sqlserver://localhost;databaseName=" + database;
     }
 
     public Connector() {
-        this.URL = "jdbc:sqlserver://localhost;databaseName=Personas";
+        this.URL = "jdbc:sqlserver://localhost;databaseName=" + database;
+        setDatabase("Personas");
+        setTable("datos");
+    }
+
+    public Connector(String username, String password, String table, String database) {
+        this.username = username;
+        this.password = password;
+        this.table = table;
+        this.database = database;
+        this.URL = "jdbc:sqlserver://localhost;databaseName=" + database;
     }
 }
