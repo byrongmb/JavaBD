@@ -3,26 +3,27 @@ package SQLConnector;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class Connector {
-    private InitialContext ctx;
-    private DataSource ds;
     private Connection con;
+    private DataSource ds = null;
+    private Context ctx = null;
 
-    public boolean isConneted() {
+    public boolean isConneted(String username, String password) {
         
         boolean band = false;
         try {
-            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:/MSSQLDS");
-            con = ds.getConnection();
+            con = ds.getConnection(username, password);
+            con.commit();
             band = true;
         } catch (NamingException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } catch (SQLException e) {
             e.printStackTrace();
         }
