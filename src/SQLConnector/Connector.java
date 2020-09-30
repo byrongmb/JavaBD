@@ -1,5 +1,5 @@
 /**
- * <h1>Clase Conector<h1>
+ * <h1>Clase Conector!<h1>
  * Clase de ejemplo para realizar conexiones con SQL Server a traves de JDBC
  * <p>
  * La clase cuenta metodos para verificar conexion, guardar datas y obtener, 
@@ -22,7 +22,7 @@ public class Connector {
     private Connection con = null;
 
     /**
-    * Este metodo, realiza la conexion a la Base de datos
+    * Este metodo, carga el driver y realiza la conexion a la Base de datos
     * @exception ClassNotFoundException cuando hay problemas en el driver
     * @exception SQLException cuando hay problemas a iniciar sesion
     * 
@@ -68,6 +68,11 @@ public class Connector {
         return rs;
     }
 
+    /**
+    * Este metodo, reconfigura las credenciales de inicio de sesion
+    * @param username Recibe el Nombre de Usuario
+    * @param password Recibe la contrasena
+    */
     public void setCredentials(final String username, final String password) {
         setUsername(username);
         setPassword(password);
@@ -110,7 +115,12 @@ public class Connector {
         this.database = database;
     }
 
-    /*Constructors*/
+    /*Constructores*/
+    /**
+     * Metodo constructor, configura por defecto la base datos y la tabla que se usuaran 
+     * @param username
+     * @param password
+     */
     public Connector(final String username, final String password) {
         setUsername(username);
         setPassword(password);
@@ -119,12 +129,23 @@ public class Connector {
         this.URL = "jdbc:sqlserver://localhost;databaseName=" + database;
     }
 
+    /**
+     * Metodo constructor sin parametros, ideal cuando no sea necesario por el momento 
+     * configura el usuario y contrasena
+     */
     public Connector() {
         setDatabase("Personas");
         setTable("datos");
         this.URL = "jdbc:sqlserver://localhost;databaseName=" + database;
     }
 
+    /**
+     * Metodo constructor que recibe todos los campos para configurar la base de datos
+     * @param username
+     * @param password
+     * @param table
+     * @param database
+     */
     public Connector(String username, String password, String table, String database) {
         this.username = username;
         this.password = password;

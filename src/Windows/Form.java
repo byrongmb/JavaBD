@@ -190,17 +190,6 @@ public class Form extends JFrame {
         button[1].addActionListener(pessSave);
     }
 
-    /*Datos de la Sesion*/
-    private String username;
-    private String password;
-
-    /*Componentes*/
-    private JPanel[] panel = new JPanel[2];
-    private JLabel[] label = new JLabel[6];
-    private JTextField[] textField = new JTextField[4];
-    private Button[] button = new Button[5];
-    private static final long serialVersionUID = 8270121826700971578L;
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -216,4 +205,15 @@ public class Form extends JFrame {
         this.setResizable(false);
         components();
     }
+
+    /*Datos de la Sesion*/
+    private String username;
+    private String password;
+
+    /*Componentes*/
+    private JPanel[] panel = new JPanel[2];
+    private JLabel[] label = new JLabel[6];
+    private JTextField[] textField = new JTextField[4];
+    private Button[] button = new Button[5];
+    private static final long serialVersionUID = 8270121826700971578L;
 }
