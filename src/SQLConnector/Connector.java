@@ -31,7 +31,7 @@ public class Connector {
     */
     public void isConneted() throws ClassNotFoundException, SQLException {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        setCon((Connection) DriverManager.getConnection(URL, username, password));
+        setCon((Connection) DriverManager.getConnection(URL,username,password));
     }
 
     /**
